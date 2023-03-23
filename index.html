@@ -1,124 +1,16 @@
+์<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Dis Qoute</title>
-    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
 </head>
-
 <body>
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/form.css"/>
-    
-    <!-- JS -->
-    <!-- Mouse over Zoom Product -->
-    <script language="javascript">
-        function zoomHover(imgname) {
-            $j('#icon_zoom_' + imgname).show();
-        }
-        function zoomHover_out(imgname) {
-            $j('#icon_zoom_' + imgname).hide();
-        }
-    </script>
-    <!-- Mouse over Zoom Product -->
 
-    <!-- F12, Ctrl+Shift+I Disable -->
-    <script language="JavaScript">
-        document.onkeypress = function (event) {
-            event = (event || window.event);
-            if (event.keyCode == 123 || event.keyCode == 73) {
-                //alert('No F-12');
-                return false;
-            }
-        }
-        document.onmousedown = function (event) {
-            event = (event || window.event);
-            if (event.keyCode == 123 || event.keyCode == 73) {
-                //alert('No F-keys');
-                return false;
-            }
-        }
-        document.onkeydown = function (event) {
-            event = (event || window.event);
-            if (event.keyCode == 123 || event.keyCode == 73) {
-                //alert('No F-keys');
-                return false;
-            }
-        }
-    </script>
-    <!-- F12, Ctrl+Shift+I Disable -->
-
-    <!-- Right Click Disable -->
-    <script language="JavaScript">
-        var message = "Right Click Disabled!";
-        function clickIE4() {
-            if (event.button == 2) {
-                alert(message);
-                return false;
-            }
-        }
-        function clickNS4(e) {
-            if (document.layers || document.getElementById && !document.all) {
-                if (e.which == 2 || e.which == 3) {
-                    alert(message);
-                    return false;
-                }
-            }
-        }
-        if (document.layers) {
-            document.captureEvents(Event.MOUSEDOWN);
-            document.onmousedown = clickNS4;
-        }
-        else if (document.all && !document.getElementById) {
-            document.onmousedown = clickIE4;
-        }
-        //document.oncontextmenu = new Function("alert(message);return false")
-        document.oncontextmenu = new Function("return false")
-    </script>
-    <!-- Right Click Disable -->
-
-    <!-- detect console open -->
-    <script>
-        !function () {
-            function detectDevTool(allow) {
-                if (isNaN(+allow)) allow = 100;
-                var start = +new Date(); // Validation of built-in Object tamper prevention.
-                debugger;
-                var end = +new Date(); // Validates too.
-                if (isNaN(start) || isNaN(end) || end - start > allow) {
-                    console.log('%c ฮั่นแน่!! แจ๋วมากหรอ', 'font-weight: bold; font-size: 50px;color: red; text-shadow: 3px 3px 0 rgb(217,31,38) , 6px 6px 0 rgb(226,91,14) , 9px 9px 0 rgb(245,221,8) , 12px 12px 0 rgb(5,148,68) , 15px 15px 0 rgb(2,135,206) , 18px 18px 0 rgb(4,77,145) , 21px 21px 0 rgb(42,21,113)');
-                    console.log('อย่าหาทำเลย ถือว่าขอร้องล่ะนะ!!');
-                }
-            }
-            if (window.attachEvent) {
-                if (document.readyState === "complete" || document.readyState === "interactive") {
-                    detectDevTool();
-                    window.attachEvent('onresize', detectDevTool);
-                    window.attachEvent('onmousemove', detectDevTool);
-                    window.attachEvent('onfocus', detectDevTool);
-                    window.attachEvent('onblur', detectDevTool);
-                } else {
-                    setTimeout(argument.callee, 0);
-                }
-            } else {
-                window.addEventListener('load', detectDevTool);
-                window.addEventListener('resize', detectDevTool);
-                window.addEventListener('mousemove', detectDevTool);
-                window.addEventListener('focus', detectDevTool);
-                window.addEventListener('blur', detectDevTool);
-            }
-        }();
-    </script>
-    <!-- detect console open -->
-    
-    <!-- include html -->
-    <script src="js/inchtml.js"></script>
-    <!-- include html -->
-
-    <script src="js/login.js"></script>
-
-    <!-- HTML -->
-    <div inchtml="page/login.html"></div>
-
-    <!-- keep it lower than html includded files-->
-    <script>
-        includeHTML(); 
-    </script>
 </body>
+</html>
