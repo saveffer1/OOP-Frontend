@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login </title>
-    <link rel="stylesheet" href="/Discord-OOP-Frontend/src/style/style-login.css">
+    <link rel="stylesheet" href="/src/style/style-login.css">
 </head>
 <body>
 <!-- this is login -->
 
     <div class="box_login">
         <div class="position">
-            <form class="container_login" id="container_login">
+            <form class="container_login" id="container_login" >
                 <div class="centering-wrapper">
                     <div class="section1 text-center">
                         <div class="primary-header">Welcome back!</div>
@@ -56,8 +56,8 @@
                     </div>
                 </div>
             </form>
-            <!-- ----- -->
-            <form class="container_register" id="container_register" style="display:none">
+            <!--  this is register form ----- -->
+            <form class="container_register" id="container_register" style="display:none"> 
                 <div class="centering-wrapper">
                     <div class="section2 text-center">
                         <div class="primary-header">Create New User</div>
@@ -65,37 +65,42 @@
                             <!-- -------------------------------------------------------------------------------------- -->
                             <div class="form-group">
                                 <h5 class="input-placeholder" id="email-txt">Email<span class="error-message" id="email-error"></span></h5>
-                                <input type="email" required="true" name="logemail" class="form-style" id="logemail"
+                                <input type="email" required="true" name="logemail" class="form-style" id="regis-email"
                                     autocomplete="off" style="margin-bottom: 20px;">
                                 <i class="input-icon uil uil-at"></i>
                             </div>
                             <!-- -------------------------------------------------------------------------------------- -->
                             <div class="form-group">
                                 <h5 class="input-placeholder" id="username-txt">Username<span class="error-message" id="email-error"></span></h5>
-                                <input required="true" name="username" class="form-style" id="logemail"
+                                <input required="true" name="username" class="form-style" id="regis-username"
                                     autocomplete="off" style="margin-bottom: 20px;">
                                 <i class="input-icon uil uil-at"></i>
                             </div>
                             <!-- -------------------------------------------------------------------------------------- -->
                             <div class="form-group">
                                 <h5 class="input-placeholder" id="pword-txt">Password<span class="error-message" id="password-error"></span></h5>
-                                <input type="password" required="true" name="logpass" class="form-style" id="logpass"
+                                <input type="password" required="true" name="logpass" class="form-style" id="regis-pass"
                                     autocomplete="on">
                                 <i class="input-icon uil uil-lock-alt"></i>
                             </div>
                             <!-- -------------------------------------------------------------------------------------- -->
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <div class="day-form">
                                     <h5 class="input-placeholder" id="bday-txt"> Birth day  </h5>
                                     <input type="date" name="" id="">
                                 </div>
-                            </div>
-                            <!-- -------------------------------------------------------------------------------------- -->
-                            <!-- <div class="check-receive-email">
-                                <input type="checkbox" name="" id="">
-                                <label for="checkbox-lb">Receive email from us</label>
                             </div> -->
-                        
+                            <!-- -------------------------------------------------------------------------------------- -->
+                            <div class="form-group">
+                                <h5 class="input-placeholder" id="upload">Avatar<span ></span></h5>
+                                <input type="file" onchange={onFileUpload} name="fileupload" class="form-style" id="fileupload"/>
+                                <i class="input-icon uil uil-lock-alt"></i>
+                            </div>
+                            
+
+                            <!-- -------------------------------------------------------------------------------------- -->
+
+
                         </div>
                         <div class="btn-position">
                             <button href="#" class="btn-resgister">register</button>
@@ -119,60 +124,48 @@
             document.getElementById('container_register').style.display = 'block';
         }
 
-        // fetch api 
+        // login post api
         const form_login = document.getElementById('container_login');
-        form_login.addEventListener('submit', (e) => {
+        form_login.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const email = document.getElementById('email-txt').value;
-            const username = document.getElementById('username-txt').value;
-            const data = {
-                email,
-                password
-            }
-            fetch('http://127.0.0.1:8000/account/login', {
+            const email = document.getElementById('logemail').value;
+            const password = document.getElementById('logpass').value;
+
+            const response = await fetch('http://localhost:8080/account/login', {
                 method: 'POST',
+                credentials: 'include',
                 headers: {
-                    'Content-Type': '/Discord-OOP-Frontend/src/page/login and register.html'
+                    'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(data)
-            }) 
-                .then(res => res.json())
-                .then(data => {
-                    console.log(data);
-                })
-                .catch(err => {
-                    console.log(err);
-                })
-        })
-        
-        const form_register = document.getElementById('container_register');
-        form_register.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const email = document.getElementById('email-txt').value;
-            const username = document.getElementById('username-txt').value;
-            const password = document.getElementById('pword-txt').value;
-            const data = {
-                email,
-                username,
-                password
-            }
-            fetch('http://127.0.0.1:8000/account/register', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': '/Discord-OOP-Frontend/src/page/login and register.html'
-                },
-                body: JSON.stringify(data)
-            }) 
-                .then(res => res.json())
-                .then(data => {
-                    console.log(data);
-                })
-                .catch(err => {
-                    console.log(err);
-                })
+                body: JSON.stringify({ email, password })
+            }); 
+            
+            const result = await response.json();
+            console.log(result);
+
         })
 
+        // register post api
+        const form = document.getElementById('container_register');
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const email = document.getElementById('regis-email').value;
+            const username = document.getElementById('regis-username').value;
+            const password = document.getElementById('regis-pass').value;
+            const file = document.querySelector('input[type="file"]');
+            //console.log(file.files[0])
 
+            const formData = new FormData(form);
+            formData.append('image', file.files[0]);
+
+            const response = await fetch(`http://localhost:8080/account/register?email=${email}&username=${username}&password=${password}`, {
+                method: 'POST',
+                body: formData
+            })
+            const result = await response.json();
+            console.log(result);
+            showLoginForm();
+        });
     </script>
 
 </body>
