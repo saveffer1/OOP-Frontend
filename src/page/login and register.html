@@ -72,7 +72,7 @@
                             <!-- -------------------------------------------------------------------------------------- -->
                             <div class="form-group">
                                 <h5 class="input-placeholder" id="username-txt">Username<span class="error-message" id="email-error"></span></h5>
-                                <input type="email" required="true" name="logemail" class="form-style" id="logemail"
+                                <input required="true" name="username" class="form-style" id="logemail"
                                     autocomplete="off" style="margin-bottom: 20px;">
                                 <i class="input-icon uil uil-at"></i>
                             </div>
@@ -118,6 +118,61 @@
             document.getElementById('container_login').style.display = 'none';
             document.getElementById('container_register').style.display = 'block';
         }
+
+        // fetch api 
+        const form_login = document.getElementById('container_login');
+        form_login.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email-txt').value;
+            const username = document.getElementById('username-txt').value;
+            const data = {
+                email,
+                password
+            }
+            fetch('http://127.0.0.1:8000/account/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': '/Discord-OOP-Frontend/src/page/login and register.html'
+                },
+                body: JSON.stringify(data)
+            }) 
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+        })
+        
+        const form_register = document.getElementById('container_register');
+        form_register.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email-txt').value;
+            const username = document.getElementById('username-txt').value;
+            const password = document.getElementById('pword-txt').value;
+            const data = {
+                email,
+                username,
+                password
+            }
+            fetch('http://127.0.0.1:8000/account/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': '/Discord-OOP-Frontend/src/page/login and register.html'
+                },
+                body: JSON.stringify(data)
+            }) 
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+        })
+
+
     </script>
 
 </body>

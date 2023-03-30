@@ -6,7 +6,11 @@ body {
   
 
 .chat {
+  width: 100%;
     background-color: #313239;
+    padding: 0 15px;
+    color : white;
+
     width: calc(85%);
   }
   
