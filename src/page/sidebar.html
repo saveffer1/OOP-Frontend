@@ -5,17 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>sidebar</title>
-    <link rel="stylesheet" href="/src/style/style-sidebar.css">
+    <link rel="stylesheet" href="/Discord-OOP-Frontend/src/style/style-sidebar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script> -->
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="sidebar">
         <header>
             <div class="navbar">
-            <div class="logo"><a href="#">Room ไก่ย่าง</a></div>
+            <div class="logo"><a href="#" style="font-family:Mukta">Room ไก่ย่าง</a></div>
             <!-- <ul class="links">
                 <li><a href="#">Server Setting</a></li>
                 <li><a href="#">invite Link</a></li>
@@ -39,12 +41,39 @@
 
 
         <div class="textch">
-          
+            <a style="font-family:Mukta">Text Channel </a> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; <a><i class="fa-solid fa-plus"></i></a> 
+            <div class="ch_room">
+            <li> <a href="#textgen" style="font-family:Mukta"><i class="fa-sharp fa-solid fa-hashtag"></i> &nbsp;  General</a></li>
+
+            </div>
+                
+               
+            
         </div>
-        <div class="voicech"></div>
+        <div class="voicech">
+            <a style="font-family:Mukta">Voice Channel</a>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a><i class="fa-solid fa-plus"></i></a> 
+            <div class="voice_room">
+            <li> <a href="#vociegen" style="font-family:Mukta"><i class="fa-solid fa-volume-high"></i> &nbsp;  General</a></li>
+
+            </div>
+        </div>
 
 
         </div>
+        <div class="popup_add_text_ch">
+                <div class="popup_add_content">
+                        <h3 style="font-family:mukta">Create Channel</h3>
+                        <h6 style="font-family:mukta">Text Channel</h6>
+                        <br>
+                        <h4 style="font-family:mukta">Channel Name</h4><br>
+                        <input type="text" placeholder="Name Channel" style="font-family:mukta">
+                        <br><br><br>
+                        <a href="#" class="btn_add">Create Channel</a>
+                        <a href="#" class="btn_cancel"style="font-family:mukta">Cancel</a>
+                        
+                </div>
+        </div>
+
     <footer></footer>
     </div>
 
@@ -61,6 +90,14 @@
         ? 'fa-solid fa-xmark'
         : 'fa-solid fa-chevron-down'
         }
+
+
+        document.getElementById("btn_add").addEventListener("click",function(){
+            console.log("ddd")
+            document.querySelector(".popup_add_text_ch").style.display = "flex";
+        })
+        
+
 
     </script>
 </body>

@@ -143,3 +143,163 @@ header:hover , header:active{
     }
 /* } */
 
+
+
+.textch a {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.textch  {
+    width: 80%;
+    height:auto;
+    
+    margin: 0 auto;
+    
+    align-items: start;
+    
+    color: darkgray;
+    text-align: left;
+}
+
+.ch_room  {
+    width: 90%;
+    height:auto;
+    
+    margin: 0 auto;
+    
+    align-items: start;
+    
+    color: darkgray;
+    text-align: left;
+}
+
+
+
+
+.ch_room a {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+
+.voicech a {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.voicech  {
+    width: 80%;
+    height:auto;
+    
+    margin: 0 auto;
+    
+    align-items: start;
+    
+    color: darkgray;
+    text-align: left;
+}
+
+.voice_room  {
+    width: 90%;
+    height:auto;
+    
+    margin: 0 auto;
+    
+    align-items: start;
+    
+    color: darkgray;
+    text-align: left;
+}
+
+
+
+
+.voice_room a {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+
+.popup_add_text_ch{
+background: rgba(0,0,0,0.6);
+width:100%;
+height: 100%;
+position: absolute;
+top:0;
+display: none;
+justify-content: center;
+align-items: center;
+
+}
+
+.popup_add_content{
+    height: 270px;
+    width: 500px;
+    background:#303338;
+    padding: 20px;
+    border-radius: 5px;
+    position: relative  ;
+
+}
+
+.popup_add_content h3 {
+    color: #FFFFFF;
+}
+
+.popup_add_content h4 {
+    color: #FFFFFF;
+}
+
+.popup_add_content h6 {
+    color: #A0A5AB;
+}
+
+.btn_add {
+   
+    background: rgba(87, 100, 242, 0.4);
+    padding: 10px 15px;
+    color: #ffffff;
+    font-weight: bolder;
+    text-transform: uppercase;
+    font-size: 15px;
+    border-radius: 5px;
+    box-shadow: 6px 6px 29px -4px rgba(0, 0, 0, 0.75);
+    margin-top: 25px;
+    text-decoration: none;
+    transition: 0.4s;
+}
+
+.btn_add:hover {
+    background: #5764F2;
+    
+
+}
+
+
+
+.btn_cancel {
+    
+    padding: 10px 15px;
+    color: #ffffff;
+    font-weight: bolder;
+    text-transform: uppercase;
+    font-size: 10px;
+    border-radius: 5px;
+    
+    margin-top: 25px;
+    text-decoration: none;
+    transition: 0.4s;
+}
+
+.popup_add_content a {
+    font-family: mukta, sans-serif;
+}
+
+input {
+    
+    display: flex;
+    width: 50%;
+    padding: 6px;
+    border: 1px solid gray;
+}
