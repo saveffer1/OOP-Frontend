@@ -131,7 +131,7 @@
             const email = document.getElementById('logemail').value;
             const password = document.getElementById('logpass').value;
 
-            const response = await fetch('http://localhost:8080/account/login', {
+            const response = await fetch('http://localhost:8080/account/login/', {
                 method: 'POST',
                 credentials: 'include',
                 headers: {
@@ -153,12 +153,14 @@
             const username = document.getElementById('regis-username').value;
             const password = document.getElementById('regis-pass').value;
             const file = document.querySelector('input[type="file"]');
-            //console.log(file.files[0])
 
             const formData = new FormData(form);
-            formData.append('image', file.files[0]);
+            if (file.files[0] !== undefined && file.files[0]){
+                formData.append('image', file.files[0]);    
+            }
 
-            const response = await fetch(`http://localhost:8080/account/register?email=${email}&username=${username}&password=${password}`, {
+            const avatar = 'https%3A%2F%2Fres.cloudinary.com%2Fdmtnecr2n%2Fimage%2Fupload%2FUserAvatar%2FDiscordDefaultAvatar.jpg'
+            const response = await fetch(`http://localhost:8080/account/register?email=${email}&username=${username}&password=${password}&avatar=${avatar}`, {
                 method: 'POST',
                 body: formData
             })
