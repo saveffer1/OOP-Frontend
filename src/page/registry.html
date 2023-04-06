@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login </title>
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
     <link rel="stylesheet" href="/src/style/style-login.css">
 </head>
 <body>
@@ -40,14 +41,13 @@
                             <button href="#" class="btn">login</button>
                         </div>
                         <!-- <div class="password-containerr"> -->
-                            <p class="nonlink">Need an account? <a href="#" class="btn_toggle" onclick="showRegisterForm()" style="text-decoration: none;" > register</a></p>
+                            <p class="nonlink">Need an account? <a href="#" class="btn_toggle link" onclick="showRegisterForm()" style="text-decoration: none;" > register</a></p>
                         <!-- </div> -->
                     </div>
                     <div class="horizontalSeparator"></div>
                     <div class="qr-login">
                         <div class="qr-container">
-                            <img class="logo"
-                                src="assets/images/qrcode.png" />
+                            <img class="logo" src="../assets/disquote.png" />
                             <canvas id="qr-code"></canvas>
                         </div>
                         <div class="qr-pheader">Log in with QR Code</div>
@@ -91,20 +91,21 @@
                                 </div>
                             </div> -->
                             <!-- -------------------------------------------------------------------------------------- -->
+                            <br>                            
                             <div class="form-group">
                                 <h5 class="input-placeholder" id="upload">Avatar<span ></span></h5>
                                 <input type="file" onchange={onFileUpload} name="fileupload" class="form-style" id="fileupload"/>
                                 <i class="input-icon uil uil-lock-alt"></i>
                             </div>
-                            
+                            <br>
 
                             <!-- -------------------------------------------------------------------------------------- -->
 
 
                         </div>
                         <div class="btn-position">
-                            <button href="#" class="btn-resgister">register</button>
-                            <a href="#" onclick="showLoginForm()" class="btn_toggle"> you have an account? </a>
+                            <button href="#" class="btn-register">register</button>
+                            <a href="#" onclick="showLoginForm()" class="btn_toggle link"> you have an account? </a>
                         </div>
                     </div>
                 </div>
@@ -113,7 +114,10 @@
         </div>
     </div>
 
+    <script src="src/script/authen.js"></script>
     <script>
+        const host = 'http://localhost:8080'
+
         function showLoginForm() {
             document.getElementById('container_login').style.display = 'block';
             document.getElementById('container_register').style.display = 'none';
@@ -131,7 +135,7 @@
             const email = document.getElementById('logemail').value;
             const password = document.getElementById('logpass').value;
 
-            const response = await fetch('http://localhost:8080/account/login/', {
+            const response = await fetch(`${host}/account/login/`, {
                 method: 'POST',
                 credentials: 'include',
                 headers: {
@@ -142,6 +146,12 @@
             
             const result = await response.json();
             console.log(result);
+
+            if (result.detail ===  'Authorized'){
+                window.location.href = `${host}/src/page/chatboard.html`;
+            } else {
+                alert('Wrong email or password');
+            }
 
         })
 
@@ -160,7 +170,7 @@
             }
 
             const avatar = 'https%3A%2F%2Fres.cloudinary.com%2Fdmtnecr2n%2Fimage%2Fupload%2FUserAvatar%2FDiscordDefaultAvatar.jpg'
-            const response = await fetch(`http://localhost:8080/account/register?email=${email}&username=${username}&password=${password}&avatar=${avatar}`, {
+            const response = await fetch(`${host}/account/register?email=${email}&username=${username}&password=${password}&avatar=${avatar}`, {
                 method: 'POST',
                 body: formData
             })
