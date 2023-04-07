@@ -114,9 +114,13 @@
         </div>
     </div>
 
-    <script src="src/script/authen.js"></script>
     <script>
-        const host = 'http://localhost:8080'
+        if (document.cookie.split(';').some((cookie) => cookie.trim().startsWith('authen='))) {
+            window.location.href = "../page/chatboard.html";
+        }
+    </script>
+    <script>
+        const host = 'http://saveffer.3bbddns.com:8080'
 
         function showLoginForm() {
             document.getElementById('container_login').style.display = 'block';
@@ -148,7 +152,7 @@
             console.log(result);
 
             if (result.detail ===  'Authorized'){
-                window.location.href = `${host}/src/page/chatboard.html`;
+                window.location.href = `../page/chatboard.html`;
             } else {
                 alert('Wrong email or password');
             }
@@ -172,6 +176,9 @@
             const avatar = 'https%3A%2F%2Fres.cloudinary.com%2Fdmtnecr2n%2Fimage%2Fupload%2FUserAvatar%2FDiscordDefaultAvatar.jpg'
             const response = await fetch(`${host}/account/register?email=${email}&username=${username}&password=${password}&avatar=${avatar}`, {
                 method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
                 body: formData
             })
             const result = await response.json();

@@ -1,40 +1,127 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="TestApp">
+
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>chatboard</title>
+    <title>Discord UI Clone</title>
     <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
-    <link rel="stylesheet" href="/src/style/style-chatboard.css">
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script> -->
-
+    <link rel="stylesheet" href="../style/style-chatboard.css">
+    <script src="../script/jquery.js"></script>
 </head>
-<body>
-        <div class="chat">
-            <div class="header-chat">
-                <p class="name">ไก่ทอดอร่อยมาก</p>  
-        </div>
-        
-        <div class="client-chat">
-            <div class="message">
-                <p class="text"> ลิงทำไรอยู่ </p>
+
+<body ng-controller="testCtrl">
+    <noscript>Please enable JavaScript to access this website.</noscript>
+    <div class="rootDiv">
+        <div class="side-bar">
+            <div id="chat-menu" class="nav">
+                <!-- load chat from server or dm -->
             </div>
-            <!-- <p class="time"> 14h58</p> -->
-
-            <div class="my-chat">
-                <div class="response">
-                  <p class="text"> เจี๊ยกๆ 😃</p>
+            <div id="user-box" class="userBox">
+                <img src="https://cdn.discordapp.com/embed/avatars/0.png" alt="avatar" id="avatar" class="userAvatar">
+                <div class="userinfo">
+                    <h4 id="username" class="username">Username</h4>
+                    <h6 id="discriminator" class="discriminator">#1234</h6>
                 </div>
-        
+                <div class="usermenuicons">
+                    <div class="mic" id="micToggle"></div>
+                    <div class="headphone" id="headphoneToggle"></div>
+                    <div class="settings" id="settingsToggle"></div>
+                </div>
+            </div>
+        </div>
+        <div id="nav-placeholder" class="servers">
+            <!-- load navbar.html -->
+        </div>
+        <div class="container"></div>
+        <div class="members"></div>
+    </div>
+    <!-- user-box section -->
+    <script src="../script/user-box.js" defer></script>
+    <script>
+        const host = 'http://saveffer.3bbddns.com:8080';
+        url = `${host}/account/me`;
+        authen();
+        //var t = setInterval(authen, 20000);
 
-        <script src="Discord-OOP-Fronted/src/page/script/chatboard.js"></script>
-        <script src="src/script/authen.js"></script>
-        
-        
-        
-        
+        async function getJSON() {
+            return fetch(`${host}/account/auth`, {
+                method: 'GET',
+                credentials: 'include'
+            })
+            .then((response) => response.json())
+            .then((responseJson) => { return responseJson });
+        }
 
+        async function authen() {
+            const json = await this.getJSON();
+            if (json.detail == "Authorized") {
+                getinfo(url);
+            }
+            else{
+                window.location.href = "../page/registry.html";
+            }
+        }
+
+        async function getinfo(url) {
+            let response = await fetch(url, {
+                method: 'GET',
+                credentials: 'include'
+            })
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                console.log(data);
+                let username = document.getElementById("username");
+                username.innerHTML = data.username;
+                let avatar = document.getElementById("avatar");
+                avatar.src = data.avatar;
+                let discriminator = document.getElementById("discriminator");
+                discriminator.innerHTML = "#" + data.tag;
+            })
+        }
+
+        async function logout(){
+            let response = await fetch(`${host}/account/logout`, {
+                method: 'GET',
+                credentials: 'include'
+            })
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                window.location.href = "../page/registry.html";
+            })
+        }
+
+        const toogle_setting = document.getElementById("settingsToggle");
+        toogle_setting.addEventListener("click", function () {
+            if (confirm("Are you sure you want to logout?") == true){
+                logout();
+            }
+        });
+
+
+    </script>
+
+    <!-- load navbar -->
+    <script>
+        $(function(){
+        $("#nav-placeholder").load("../page/navbar.html", function () {
+                $("#dm.homebutton").on("click", function (e) {
+                    e.preventDefault();
+                    var page = $(this).data("page");
+                    $("#chat-menu").load("../page/chat-dm.html");
+                });
+                $(".server").on("click", function (e) {
+                    e.preventDefault();
+                    var page = $(this).data("page");
+                    $("#chat-menu").load("../page/chat-guild.html");
+                });
+            });
+        });
+    </script>
 </body>
+
 </html>

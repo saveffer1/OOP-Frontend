@@ -8,6 +8,27 @@
     <link rel="icon" type="image/x-icon" href="src/assets/favicon.ico">
 </head>
 <body>
-    <script src="src/script/authen.js"/>
+    <script>
+        const host = 'http://saveffer.3bbddns.com:8080';
+        authen();
+        async function getJSON() {
+            return fetch(`${host}/account/auth`, {
+                method: 'GET',
+                credentials: 'include'
+            })
+            .then((response) => response.json())
+            .then((responseJson) => { return responseJson });
+        }
+
+        async function authen() {
+            const resp = await this.getJSON();
+            if (resp.detail == "Authorized") {
+                window.location.href = "./src/page/chatboard.html";
+            }
+            else{
+                window.location.href = "./src/page/registry.html";
+            }
+        }
+    </script>
 </body>
 </html>
