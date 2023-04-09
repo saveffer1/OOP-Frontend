@@ -124,11 +124,13 @@
         const host = 'http://saveffer.3bbddns.com:8080'
 
         function showLoginForm() {
+            //history.pushState('data to be passed', 'Title of the page', '/login');
             document.getElementById('container_login').style.display = 'block';
             document.getElementById('container_register').style.display = 'none';
         }
 
         function showRegisterForm() {
+            //history.pushState('data to be passed', 'Title of the page', '/register');
             document.getElementById('container_login').style.display = 'none';
             document.getElementById('container_register').style.display = 'block';
         }
