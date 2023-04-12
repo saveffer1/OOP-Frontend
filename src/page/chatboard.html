@@ -40,24 +40,22 @@
     <!-- user-box section -->
     <script src="../script/user-box.js" defer></script>
     <script>
-        function getHost() {
-            return fetch('../../host.json')
-            .then(response => response.json())
-            .then(data => JSON.parse(JSON.stringify(data)).hostname)
-            .then(host => host.toString());
-        }
-
-        let host;
-        getHost().then(hostname => {
-            host = hostname;
-            console.log(host);
-        });
-
-        url = `${host}/account/me`;
+        var host = "";
+            function getHost() {
+                return fetch('../../host.json')
+                    .then(response => response.json())
+                    .then(data => JSON.parse(JSON.stringify(data)).hostname)
+                    .then(hostname => {
+                        host = hostname;
+                        return hostname;
+                    });
+            }
+        
         authen();
         //var t = setInterval(authen, 20000);
 
         async function getJSON() {
+            await getHost();
             return fetch(`${host}/account/auth`, {
                 method: 'GET',
                 credentials: 'include'
@@ -67,9 +65,12 @@
         }
 
         async function authen() {
+            await getHost();
+            url = `${host}/account/me`;
             const json = await this.getJSON();
             if (json.detail == "Authorized") {
                 getinfo(url);
+                consol.log("Authorized")
             }
             else{
                 window.location.href = "../page/registry.html";
@@ -96,6 +97,7 @@
         }
 
         async function logout(){
+            await getHost();
             let response = await fetch(`${host}/account/logout`, {
                 method: 'GET',
                 credentials: 'include'

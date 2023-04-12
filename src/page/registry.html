@@ -131,7 +131,7 @@
         let host;
         getHost().then(hostname => {
             host = hostname;
-            //console.log(host);
+            console.log(host);
         });
 
         function showLoginForm() {
@@ -153,7 +153,7 @@
             const email = document.getElementById('logemail').value;
             const password = document.getElementById('logpass').value;
 
-            const response = await fetch(`${host}/account/login/`, {
+            const response = await fetch(`${host}/account/login`, {
                 method: 'POST',
                 credentials: 'include',
                 headers: {
