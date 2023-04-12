@@ -12,7 +12,7 @@
     background-color: rgb(30,31,34);
     justify-content: center;
     height: 100vh;   
-    width: 400px;
+    width: 100;
     
 }
 
@@ -45,15 +45,15 @@ header:hover , header:active{
 .navbar {
     width: 100%;
     height: 60px;
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
+    max-width:120px;
+    margin: 9;
+    display:flex;
     align-items: center;
     justify-content: space-between;
 }
 
 .navbar .logo a {
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: bold;
 }
 
@@ -149,15 +149,17 @@ header:hover , header:active{
 
 
 .textch a {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: bold;
 }
-
-.textch  {
-    width: 80%;
+.channel {
     height:auto;
+}
+.textch  {
+    width: 100%;
+    height:120px;
     
-    margin: 0 auto;
+    margin:  9;
     
     align-items: start;
     
@@ -187,7 +189,7 @@ header:hover , header:active{
 
 
 .voicech a {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: bold;
 }
 

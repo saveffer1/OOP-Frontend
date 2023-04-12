@@ -1,0 +1,124 @@
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+    <link rel="stylesheet" href="../style/style-setting.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<section class="container_setting">
+    
+    <div class="column1">
+        <div class="section">
+        <div class="section_black"></div>
+        <div class="section_s">
+        <a style="font-family:Mukta"><b>USER SETTING</b></a>
+            <div class="btn_a">
+                <li><button class="btn_s active"><a href="#">My Account</a></button></li>
+                <li><button class="btn_s"><a href="#">Profiles</a></button></li>
+                <li><button class="btn_s "><a href="#">Privacy & Safety</a></button></li>
+                <li><button class="btn_s"><a href="#">Authorized Apps</a></button></li>
+                <li><button class="btn_s"><a href="#">Devices</a></button></li>
+                <li><button class="btn_s"><a href="#">Connections</a></button></li>
+                <li><button class="btn_s" ><a href="#">Friend Requests</a></button></li>
+                
+            </div>
+            <div class="line-4">
+                <hr>
+              </div>
+        <a style="font-family:Mukta"><b>APP SETTING</b></a>
+            <div class="btn_a">
+                <li><button class="btn_s"><a href="#">Appearance</a></button></li>
+                <li><button class="btn_s"><a href="#">Accessibility</a></button></li>
+                <li><button class="btn_s "><a href="#">Vocie & Video</a></button></li>
+                <li><button class="btn_s"><a href="#">Text & Images</a></button></li>
+                <li><button class="btn_s"><a href="#">Notifications</a></button></li>
+                <li><button class="btn_s"><a href="#">Keybinds</a></button></li>
+                <li><button class="btn_s" ><a href="#">Language</a></button></li>
+                <li><button class="btn_s" ><a href="#">Streamer Mode</a></button></li>
+                <li><button class="btn_s" ><a href="#">Advanced</a></button></li>
+                
+            </div>
+         
+
+              <div class="line-4">
+                <hr>
+              </div>
+              <div class="btn_a">
+                <li ><button class="btn_s" id="logoutmenu"><a href="#">Log out</a></button></li>
+                
+                
+            </div>
+              <div class="line-4">
+                <hr>
+              </div>
+        </div>
+        </div>
+    </div>
+
+    <div class="column2">
+        <div class="section_content">
+            <div class="MyAccount">
+                <a style="font-family:Mukta" class="content_head"><b>My Account</b></a>
+            </div>
+            <div class="escbtn">
+               
+                <button type="texr" style="font-family:mukta" class="btn_out_esc" ><a class="iconx" ><i class="fa-solid fa-xmark"></i></a>
+                    <br>
+                    ESC</button>
+            </div>
+        </div>
+       
+    </div>
+
+
+    <div id="popupout">
+               
+        
+
+            <div class="popup_log_content">
+                <div class="head_text"><b>Log Out</b></div>
+                <p style="font-family:mukta">Are you sure you want to logout?</p>
+               
+              
+                
+                <div class="btn_section">
+                
+              
+                <a href="#" class="btn_cancel" id="btn_cancel_out"  style="font-family:mukta">Cancel</a>
+                <button type="texr" style="font-family:mukta" class="btn_out" >Log Out</button>
+                </div>
+              
+                
+                 </div>
+           
+        
+        </div>
+
+</section>
+
+
+<script>
+    const logoutmenu = document.getElementById('logoutmenu');
+    const logoutcancel = document.getElementById('btn_cancel_out');
+    const Popupout = document.getElementById('popupout');
+
+    logoutmenu.addEventListener('click', () => {
+        Popupout.style.display ='block';
+    });
+
+    logoutcancel.addEventListener('click', () => {
+        Popupout.style.display ='none';
+    });
+
+
+    
+</script>
