@@ -34,9 +34,54 @@
         <div id="nav-placeholder" class="servers">
             <!-- load navbar.html -->
         </div>
-        <div class="container"></div>
-        <div class="members"></div>
+        <div class="container">
+            <div class="nav-chat">
+                <div class="ch-name">
+                    <h5># ch_ name</h5>
+                </div>
+                <div class="nav-menu">
+                    <div class="icon-menu-chat">
+                        <img src="/src/assets/pin.ico" alt="">
+                    </div>                    
+                    <div class="icon-menu-chat">
+                        <img src="/src/assets/member.png" alt="">
+                    </div>
+                    <div class="icon-menu-chat">
+                        <h5>member?</h5>
+                    </div>
+                    <div class="search-menu-chat">
+                        <input class="search-chat" type="text" placeholder="Search" >
+                        <button class="search-btn"> <img src="/src/assets/search-icon.png" alt=""></button>
+                        
+                    </div>
+                    
+
+                </div>
+            </div>
+            
+            <div class="input-message">
+                <input class="chat-input" type="text" >
+                <button class="chat-emoji">emoji</button>
+                <button class="chat-strickers">strickers</button>
+            </div>
+
+
+            <div class="chatbox">
+                <h1>chat box area</h1>
+            </div>
+            <div class="members">
+                <div class="box-member">
+                    <h2>this is box member</h2>
+                    <!-- <h2>this is box member</h2>
+                    <h2>this is box member</h2>
+                    <h2>this is box member</h2>
+                    <h2>this is box member</h2> -->
+                </div>
+            </div>
+        </div>
+        
     </div>
+    
     <!-- user-box section -->
     <script src="../script/user-box.js" defer></script>
     <script>
@@ -73,7 +118,7 @@
                 consol.log("Authorized")
             }
             else{
-                window.location.href = "../page/registry.html";
+                window.location.href = "/src/page/registry.html";
             }
         }
 
@@ -106,7 +151,7 @@
                 return response.json();
             })
             .then(function (data) {
-                window.location.href = "../page/registry.html";
+                window.location.href = "/src/page/registry.html";
             })
         }
 
