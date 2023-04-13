@@ -6,31 +6,79 @@
     </svg>
 </div>
 <hr class="server-divider" />
-<div class="server active">
-    <p class="servericon">SN</p>
+<div id="server">
+    <!-- <div class="server active">
+        <p class="servericon">SN</p>
+    </div>
+    <div class="server">
+        <p class="servericon">S1</p>
+    </div>
+    <div class="server">
+        <p class="servericon unread">S2</p>
+    </div>
+    <div class="server">
+        <img class="servericon" src="https://cdn.discordapp.com/embed/avatars/0.png">
+    </div>
+    <div class="server">
+        <img class="servericon unread" src="https://cdn.discordapp.com/embed/avatars/1.png">
+    </div>
+    <div class="server">
+        <img class="servericon" src="https://cdn.discordapp.com/embed/avatars/2.png">
+    </div>
+    <div class="server">
+        <img class="servericon" src="https://cdn.discordapp.com/embed/avatars/3.png">
+    </div>
+    <div class="server">
+        <img class="servericon" src="https://cdn.discordapp.com/embed/avatars/4.png">
+    </div> -->
 </div>
-<div class="server">
-    <p class="servericon">S1</p>
-</div>
-<div class="server">
-    <p class="servericon unread">S2</p>
-</div>
-<div class="server">
-    <img class="servericon" src="https://cdn.discordapp.com/embed/avatars/0.png">
-</div>
-<div class="server">
-    <img class="servericon unread" src="https://cdn.discordapp.com/embed/avatars/1.png">
-</div>
-<div class="server">
-    <img class="servericon" src="https://cdn.discordapp.com/embed/avatars/2.png">
-</div>
-<div class="server">
-    <img class="servericon" src="https://cdn.discordapp.com/embed/avatars/3.png">
-</div>
-<div class="server">
-    <img class="servericon" src="https://cdn.discordapp.com/embed/avatars/4.png">
-</div>
-<div class="server invite">
+<div class="server invite" id="invite">
     <p class="inviteButton">+</p>
 </div>
+<script>
+    function getHost() {
+        return fetch('../../host.json')
+        .then(response => response.json())
+        .then(data => JSON.parse(JSON.stringify(data)).hostname)
+        .then(hostname => {
+            host = hostname;
+            return hostname;
+        });
+    }
+    
+    async function get_server_list() {
+            await getHost();
+            return fetch(`${host}/server/get_list`, {
+                method: 'GET',
+                credentials: 'include'
+            })
+                .then((response) => response.json())
+                .then((responseJson) => { return responseJson });
+    }
 
+    function loop_server(){
+        // Get the server list data
+        get_server_list().then((data) => {
+            // Get the server container element
+            const serverContainer = $('#server');
+
+            // Loop through the server list data
+            $.each(data.servers, (i, server) => {
+                // Create a new server element
+                const serverElement = $('<div>').addClass('server');
+
+                // Create a new server icon element
+                const serverIconElement = $('<img>').addClass('servericon').attr('src', server.icon);
+
+                // Add the server icon element to the server element
+                serverElement.append(serverIconElement);
+
+                // Add the server element to the server container
+                serverContainer.append(serverElement);
+            });
+        });
+    }
+
+    loop_server();
+
+</script>
