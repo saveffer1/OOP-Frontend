@@ -199,6 +199,10 @@ body {
   display: block !important;
   margin: 0;
   font-weight: bolder;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px;
 }
 
 .discriminator {
@@ -250,7 +254,7 @@ body {
 
 
 
-.nav-chat{
+.nav-chat ,.nav-chat-dm{
   display: flex;
   padding: 10px 0px 10px 0px ;
   height: 10px;
@@ -261,20 +265,52 @@ body {
   border-bottom: 1px solid var(--dark-server-list);
   box-shadow: var(--text-gray);
 }
+.line{
+  width: 2px;
+  height: 60%;
+  background-color: rgb(63,65,71);
+}
 
-.nav-menu{
+.nav-chat-dm{
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.nav-menu , .nav-dm{
   display: flex;
   justify-content: space-between;
   padding-right: 15px;
+  align-items: center;
 }
 
-.icon-menu-chat {
+.icon-menu-chat  {
   display: flex;
   margin: 0 10px 0 10px;
   color: rgb(181,186,193);
   justify-content: center;
   flex-direction: column;
 } 
+
+.nav-dm h5{
+  margin: 0px 15px 0px 15px;
+}
+
+.menu-dm-btn{
+  display: flex;  
+  justify-content: center;
+  align-items: center;
+  margin: 0 10px 0 10px;
+  background-color: rgb(36,128,70);
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  color: var(--text-gray);
+  cursor: pointer;
+}
+
+.menu-dm-btn:active{
+  background-color: rgb(49,51,56);
+}
 
 .icon-menu-chat img {
   width: 24px;
@@ -284,6 +320,12 @@ body {
   position: relative;
 }
 
+.icon-menu-chat img:hover {
+  background-color: var(--text-gray);
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
 .search-menu-chat{
   padding: 0 10px 0 10px;  
   display: flex;
@@ -291,6 +333,7 @@ body {
 }
 
 .search-chat {
+  /* transition: 5s; */
   font-size: 14px;
   height: 20px;
   border: 10px;
@@ -299,11 +342,12 @@ body {
   padding: 6px 6px 6px 6px;
   border-end-start-radius: 5px;
   border-start-start-radius: 5px;
-  transition: all 0.3s ease
+
 }
 
 
-.search-chat:focus {
+.search-chat:focus{
+  transition: 10s;
   outline: none;
   width: 300px;
 }
@@ -336,55 +380,129 @@ body {
 }
 
 .input-message{
-  display: flex;
+  display:flex;
   text-align: left;
   position: fixed;
-  bottom: 10px;
-  width: 90vw;
+  bottom: 15px;
+  width: 100%;
   padding-left: 10px;
-  
 }
 
 
 
 .chat-input{
-  background-color: #383A40;
-  width: 55vh;
-  height: 2vh;
+  background-color: rgb(96, 100, 104);
+  width: 50%;
+  height: 40px;
+  padding-left: 10px;
+  padding-right: 10px;
   font-size: 18px;
-  color: white;
+  color: rgb(240, 236, 236);
+  border: none;
   border-radius: 5px;
-  border-top-style: groove;
-  border-right-style: groove;
-  border-left-style: groove;
-  border-bottom-style: groove;
   outline: none;
 }
 
-.nav-chat { grid-area: header; }
+
+.nav-chat , .nav-chat-dm { grid-area: header; }
 .chatbox { grid-area: menu; }
 .members { grid-area: right; }
 .input-message { grid-area: footer; }
+.chatbox , .members {
+  display: grid;
+}
 
-
-.container {
+.container , .nav {
   display: grid;
   grid-column-start: 4;
   grid-row-start: 1;
   grid-row-end: 1; 
-  grid-template-areas:
-  'header header'
-  'menu right '
-  'footer right ';
-  grid-template-columns:  1fr;
-  grid-template-rows: 70px 1fr 55px;
+
 }
 
 .members{
   background-color: rgb(43,45,49);
   padding: 0px 10px 0px 10px;
   margin: 0px 0px 0px 0px;
+  width: 225px;
+}
+
+.in-container{
+  display: grid;
+  grid-template-areas:
+  'header header'
+  'menu right '
+  'footer right ';
+  grid-template-columns:  1fr;
+  grid-template-rows: 70px 1fr 55px;  
 }
 
 
 
+.in-container-dm{
+  display: grid;
+  grid-template-areas:
+  'header header'
+  'menu-2 right ';
+  grid-template-columns:  1fr;
+  grid-template-rows: 70px 1fr;  
+}
+
+
+.menu-dm{
+  cursor: pointer;
+}
+
+
+.friend-list{
+  padding: 15px 25px;
+}
+
+
+.status-row {
+  background-color: #36393f;
+  border-bottom: 1px solid white;
+  font-size: 16px;
+}
+
+.search-friends-box{
+  display: flex;
+  align-items: center;
+  padding: 0 10px 0 10px;
+}
+
+.input-friends-box{
+  width: 80%;
+  padding: 10px;
+  background-color: rgb(30,31,34);
+  border: none;
+  /* border-radius: 5px; */
+  outline: none;
+  color: var(--text-gray);
+  font-size: 17px;
+  border-end-start-radius: 5px;
+  border-start-start-radius: 5px;
+}
+
+.search-friend-btn{
+  background-color: rgb(30,31,34);
+  border: none;
+  cursor: pointer;
+  height: 40px;
+  width: 40px;
+  border-end-end-radius: 5px;
+  border-start-end-radius: 5px;
+  padding: 0px;
+  
+}
+
+.search-friend-btn img{
+  padding-top: 1px;
+  height: 20px;
+  width: 20px;
+}
+
+.user-row{
+  padding: 30px ;
+  border-bottom: 1px solid white;
+}

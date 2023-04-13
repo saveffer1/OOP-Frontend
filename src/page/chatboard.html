@@ -34,50 +34,9 @@
         <div id="nav-placeholder" class="servers">
             <!-- load navbar.html -->
         </div>
-        <div class="container">
-            <div class="nav-chat">
-                <div class="ch-name">
-                    <h5># ch_ name</h5>
-                </div>
-                <div class="nav-menu">
-                    <div class="icon-menu-chat">
-                        <img src="/src/assets/pin.ico" alt="">
-                    </div>                    
-                    <div class="icon-menu-chat">
-                        <img src="/src/assets/member.png" alt="">
-                    </div>
-                    <div class="icon-menu-chat">
-                        <h5>member?</h5>
-                    </div>
-                    <div class="search-menu-chat">
-                        <input class="search-chat" type="text" placeholder="Search" >
-                        <button class="search-btn"> <img src="/src/assets/search-icon.png" alt=""></button>
-                        
-                    </div>
-                    
 
-                </div>
-            </div>
-            
-            <div class="input-message">
-                <input class="chat-input" type="text" >
-                <button class="chat-emoji">emoji</button>
-                <button class="chat-strickers">strickers</button>
-            </div>
-
-
-            <div class="chatbox">
-                <h1>chat box area</h1>
-            </div>
-            <div class="members">
-                <div class="box-member">
-                    <h2>this is box member</h2>
-                    <!-- <h2>this is box member</h2>
-                    <h2>this is box member</h2>
-                    <h2>this is box member</h2>
-                    <h2>this is box member</h2> -->
-                </div>
-            </div>
+        <div id="chat-board" class="container">
+            <!-- load container -->
         </div>
         
     </div>
@@ -85,81 +44,90 @@
     <!-- user-box section -->
     <script src="../script/user-box.js" defer></script>
     <script>
+        var host = "";
         function getHost() {
             return fetch('../../host.json')
-            .then(response => response.json())
-            .then(data => JSON.parse(JSON.stringify(data)).hostname)
-            .then(host => host.toString());
+                .then(response => response.json())
+                .then(data => JSON.parse(JSON.stringify(data)).hostname)
+                .then(hostname => {
+                    host = hostname;
+                    return hostname;
+                });
         }
 
-        let host;
-        getHost().then(hostname => {
-            host = hostname;
-            console.log(host);
-        });
-
-        url = `${host}/account/me`;
         authen();
         //var t = setInterval(authen, 20000);
 
         async function getJSON() {
+            await getHost();
             return fetch(`${host}/account/auth`, {
                 method: 'GET',
                 credentials: 'include'
             })
-            .then((response) => response.json())
-            .then((responseJson) => { return responseJson });
+                .then((response) => response.json())
+                .then((responseJson) => { return responseJson });
         }
 
         async function authen() {
+            await getHost();
+            url = `${host}/account/me`;
             const json = await this.getJSON();
             if (json.detail == "Authorized") {
                 getinfo(url);
+                console.log("Authorized")
             }
-            else{
+            else {
                 window.location.href = "/src/page/registry.html";
             }
         }
 
+        // fetch user information
         async function getinfo(url) {
+            host = await getHost();
             let response = await fetch(url, {
                 method: 'GET',
                 credentials: 'include'
             })
-            .then(function (response) {
-                return response.json();
-            })
-            .then(function (data) {
-                console.log(data);
-                let username = document.getElementById("username");
-                username.innerHTML = data.username;
-                let avatar = document.getElementById("avatar");
-                avatar.src = data.avatar;
-                let discriminator = document.getElementById("discriminator");
-                discriminator.innerHTML = "#" + data.tag;
-            })
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(async function (data) { 
+                    console.log(data);
+                    let username = document.getElementById("username");
+                    username.innerHTML = data.username;
+                    let avatar = document.getElementById("avatar");
+                    avatar.src = data.avatar;
+                    let discriminator = document.getElementById("discriminator");
+                    discriminator.innerHTML = "#" + data.tag;
+                }) 
         }
 
-        async function logout(){
+
+
+        async function logout() {
+            await getHost();
             let response = await fetch(`${host}/account/logout`, {
                 method: 'GET',
                 credentials: 'include'
             })
-            .then(function (response) {
-                return response.json();
-            })
-            .then(function (data) {
-                window.location.href = "/src/page/registry.html";
-            })
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (data) {
+                    window.location.href = "/src/page/registry.html";
+                })
         }
 
         const toogle_setting = document.getElementById("settingsToggle");
         toogle_setting.addEventListener("click", function () {
-            if (confirm("Are you sure you want to logout?") == true){
+            if (confirm("Are you sure you want to logout?") == true) {
                 logout();
             }
         });
 
+
+        //animetion button 
+        
 
     </script>
 
@@ -171,12 +139,19 @@
                     e.preventDefault();
                     var page = $(this).data("page");
                     $("#chat-menu").load("../page/chat-dm.html");
+                    e.preventDefault();
+                    var page = $(this).data("page");
+                    $("#chat-board").load("../page/container-dm.html");
                 });
                 $(".server").on("click", function (e) {
                     e.preventDefault();
                     var page = $(this).data("page");
                     $("#chat-menu").load("../page/chat-guild.html");
+                    e.preventDefault();
+                    var page = $(this).data("page");
+                    $("#chat-board").load("../page/container-server.html");
                 });
+                    
             });
         });
     </script>
