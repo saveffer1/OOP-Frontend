@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <title>Login </title>
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+    <link rel="stylesheet" href="/src/style/style-login.css">
+</head>
+<body>
+<!-- this is login -->
+
+    <div class="box_login">
+        <div class="position">
+            <form class="container_login" id="container_login" >
+                <div class="centering-wrapper">
+                    <div class="section1 text-center">
+                        <div class="primary-header">Welcome back!</div>
+                        <div class="secondary-header">We're so excited to see you again!</div>
+                        <div class="input-position">
+                            <div class="form-group">
+                                <h5 class="input-placeholder" id="email-txt">Email<span class="error-message"
+                                        id="email-error"></span></h5>
+                                <input type="email" required="true" name="logemail" class="form-style" id="logemail"
+                                    autocomplete="off" style="margin-bottom: 20px;">
+                                <i class="input-icon uil uil-at"></i>
+                            </div>
+                            <div class="form-group">
+                                <h5 class="input-placeholder" id="pword-txt">Password<span class="error-message"
+                                        id="password-error"></span></h5>
+                                <input type="password" required="true" name="logpass" class="form-style" id="logpass"
+                                    autocomplete="on">
+                                <i class="input-icon uil uil-lock-alt"></i>
+                            </div>
+                        </div>
+                        <div class="password-container">
+                            <a href="#" class="link">Forgot your password?</a>
+                        </div>
+                        <div class="btn-position">
+                            <button href="#" class="btn">login</button>
+                        </div>
+                        <!-- <div class="password-containerr"> -->
+                            <p class="nonlink">Need an account? <a href="#" class="btn_toggle link" onclick="showRegisterForm()" style="text-decoration: none;" > register</a></p>
+                        <!-- </div> -->
+                    </div>
+                    <div class="horizontalSeparator"></div>
+                    <div class="qr-login">
+                        <div class="qr-container">
+                            <img class="logo" src="../assets/disquote.png" />
+                            <canvas id="qr-code"></canvas>
+                        </div>
+                        <div class="qr-pheader">Log in with QR Code</div>
+                        <div class="qr-sheader">Scan this with the <strong>scanner app </strong>to log in instantly.</div>
+                        
+                    </div>
+                </div>
+            </form>
+            <!--  this is register form ----- -->
+            <form class="container_register" id="container_register" style="display:none"> 
+                <div class="centering-wrapper">
+                    <div class="section2 text-center">
+                        <div class="primary-header">Create New User</div>
+                        <div class="input-position">
+                            <!-- -------------------------------------------------------------------------------------- -->
+                            <div class="form-group">
+                                <h5 class="input-placeholder" id="email-txt">Email<span class="error-message" id="email-error"></span></h5>
+                                <input type="email" required="true" name="logemail" class="form-style" id="regis-email"
+                                    autocomplete="off" style="margin-bottom: 20px;">
+                                <i class="input-icon uil uil-at"></i>
+                            </div>
+                            <!-- -------------------------------------------------------------------------------------- -->
+                            <div class="form-group">
+                                <h5 class="input-placeholder" id="username-txt">Username<span class="error-message" id="email-error"></span></h5>
+                                <input required="true" name="username" class="form-style" id="regis-username"
+                                    autocomplete="off" style="margin-bottom: 20px;">
+                                <i class="input-icon uil uil-at"></i>
+                            </div>
+                            <!-- -------------------------------------------------------------------------------------- -->
+                            <div class="form-group">
+                                <h5 class="input-placeholder" id="pword-txt">Password<span class="error-message" id="password-error"></span></h5>
+                                <input type="password" required="true" name="logpass" class="form-style" id="regis-pass"
+                                    autocomplete="on">
+                                <i class="input-icon uil uil-lock-alt"></i>
+                            </div>
+                            <!-- -------------------------------------------------------------------------------------- -->
+                            <br>                            
+                            <div class="form-group">
+                                <h5 class="input-placeholder" id="upload">Avatar<span ></span></h5>
+                                <input type="file" onchange={onFileUpload} name="fileupload" class="form-style" id="fileupload"/>
+                                <i class="input-icon uil uil-lock-alt"></i>
+                            </div>
+                            <br>
+
+                            <!-- -------------------------------------------------------------------------------------- -->
+
+
+                        </div>
+                        <div class="btn-position">
+                            <button href="#" class="btn-register">register</button>
+                            <a href="#" onclick="showLoginForm()" class="btn_toggle link"> you have an account? </a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        
+        </div>
+    </div>
+
+    <script>
+        if (document.cookie.split(';').some((cookie) => cookie.trim().startsWith('authen='))) {
+            window.location.href = "../page/chatboard.html";
+        }
+    </script>
+    <script>
+        function getHost() {
+            return fetch('../../host.json')
+                .then(response => response.json())
+                .then(data => JSON.parse(JSON.stringify(data)).hostname)
+                .then(host => host.toString());
+        }
+
+        let host;
+        getHost().then(hostname => {
+            host = hostname;
+            console.log(host);
+        });
+
+        function showLoginForm() {
+            //history.pushState('data to be passed', 'Title of the page', '/login');
+            document.getElementById('container_login').style.display = 'block';
+            document.getElementById('container_register').style.display = 'none';
+        }
+
+        function showRegisterForm() {
+            //history.pushState('data to be passed', 'Title of the page', '/register');
+            document.getElementById('container_login').style.display = 'none';
+            document.getElementById('container_register').style.display = 'block';
+        }
+
+        // login post api
+        const form_login = document.getElementById('container_login');
+        form_login.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('logemail').value;
+            const password = document.getElementById('logpass').value;
+
+            const response = await fetch(`${host}/account/login`, {
+                method: 'POST',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password })
+            });
+
+            const result = await response.json();
+            console.log(result);
+
+            if (result.detail === 'Authorized') {
+                window.location.href = `../page/chatboard.html`;
+            } else {
+                alert('Wrong email or password');
+            }
+
+        })
+
+        // register post api
+        const form = document.getElementById('container_register');
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const email = document.getElementById('regis-email').value;
+            const username = document.getElementById('regis-username').value;
+            const password = document.getElementById('regis-pass').value;
+            const file = document.querySelector('input[type="file"]');
+
+            const formData = new FormData(form);
+            if (file.files[0] !== undefined && file.files[0]) {
+                formData.append('image', file.files[0]);
+            }/* else {
+                        formData.append('image', 'https%3A%2F%2Fres.cloudinary.com%2Fdmtnecr2n%2Fimage%2Fupload%2FUserAvatar%2FDiscordDefaultAvatar.jpg');
+                    }*/
+            const response = await fetch(`${host}/account/register?email=${email}&username=${username}&password=${password}`, {
+                method: 'POST',
+                body: formData
+            });
+            const result = await response.json();
+            console.log(result);
+            showLoginForm();
+        });
+    </script>
+
+</body>
+</html>

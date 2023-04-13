@@ -228,7 +228,7 @@ body {
     place-items: center;
 }
 
-.btn , .btn-resgister {
+.btn , .btn-register {
     text-decoration: none;
     border-radius: 4px;
     height: 44px;
@@ -306,7 +306,7 @@ body {
     /*optional*/
     font-family: arial, sans-serif;
     /*input has OS specific font-family*/
-    color: #069;
+    color: #7289da;
     text-decoration: underline;
     cursor: pointer;
 }
