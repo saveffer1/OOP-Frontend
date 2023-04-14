@@ -20,7 +20,7 @@ body {
   
   .column2 {
     padding: 1rem;
-   
+    
     background-color: rgba(49, 51,56, 1);
   }
   
@@ -28,13 +28,16 @@ body {
     text-decoration:none;
     color: rgb(170,175,181);
     font-size: 0.9rem;
-    transition: 0.4s;s
+    transition: 0.4s;
     
+  }
+  .section_content{
+    margin-left: 50px;
   }
 
   .section{
     display: grid;
-    grid-template-columns: 0.98fr 1fr;
+    grid-template-columns: 1fr 0.5fr;
     gap: 0rem;
   
   }
@@ -97,7 +100,7 @@ body {
 
 
 .popup_log_content{
-    height: 150px;
+    height: 135px;
     width: 500px;
     background:#303338;
     padding: 20px;

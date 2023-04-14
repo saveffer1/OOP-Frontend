@@ -65,8 +65,9 @@
                       <div class="line-4">
                         <hr>
                       </div>
-                      <div class="btn_a">
-                        <li ><button class="btn_s" id="logoutmenu"><a href="#">Log out</a></button></li>
+                      <a style="font-family:Mukta"><b>Program</b></a>
+                    <div class="btn_a">
+                    <li ><button class="btn_s" id="logoutmenu"><a href="#">Log out</a></button></li>
                         
                         
                     </div>
@@ -360,13 +361,15 @@
     
         settingprogram.addEventListener('click', () => {
             divroot.style.display ='none';
-            divsetting.style.display ='block';
+            
+            divsetting.classList.add("show");
            
         });
     
         closebtnsetting.addEventListener('click', () => {
             divroot.style.display ='grid';
-            divsetting.style.display ='none';
+            
+            divsetting.classList.remove("show");
           
         });
     
