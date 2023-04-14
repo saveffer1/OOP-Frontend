@@ -27,6 +27,9 @@ body {
   grid-template-columns: 0px 70px 300px;
   grid-template-rows: auto;
 }
+.settpage{
+  display: none;
+}
 
 .servers {
   grid-column-start: 1;
