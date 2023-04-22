@@ -175,22 +175,6 @@
                 const password = document.getElementById('regis-pass').value;
                 const file = document.querySelector('input[type="file"]');
 
-<<<<<<< HEAD
-            const formData = new FormData(form);
-            if (file.files[0] !== undefined && file.files[0]) {
-                formData.append('image', file.files[0]);
-            }/* else {
-                        formData.append('image', 'https%3A%2F%2Fres.cloudinary.com%2Fdmtnecr2n%2Fimage%2Fupload%2FUserAvatar%2FDiscordDefaultAvatar.jpg');
-                    }*/
-            const response = await fetch(`${host}/account/register?email=${email}&username=${username}&password=${password}`, {
-                method: 'POST',
-                body: formData
-            });
-            const result = await response.json();
-            console.log(result);
-            showLoginForm();
-        });
-=======
                 const formData = new FormData(form);
                 if (file.files[0] !== undefined && file.files[0]) {
                     formData.append('image', file.files[0]);
@@ -205,7 +189,6 @@
                 console.log(result);
                 showLoginForm();
             });
->>>>>>> 85c43ff8884af7db1573a3c7bf0a12faafeca8cb
     </script>
 
 </body>

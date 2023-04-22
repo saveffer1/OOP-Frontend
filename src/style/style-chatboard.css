@@ -27,6 +27,25 @@ body {
   grid-template-columns: 0px 70px 300px;
   grid-template-rows: auto;
 }
+.settpage{
+  display: none;
+  height: 100vh;
+  transition: translate(-50%,-50%);
+  transition: top 0ms ease-in-out 300ms,  opacity 300ms ease-in-out,  margin-top 300ms ease-in-out ;
+ 
+}
+
+.settpage.show {
+  display: block;
+  overflow: hidden;
+  top: 50%;
+  opacity: 1;
+  margin-top: 5px;
+  transition: top 0ms ease-in-out 0ms,
+              opacity 300ms ease-in-out,
+              margin-top 300ms ease-in-out ;
+}
+
 
 .servers {
   grid-column-start: 1;
@@ -273,13 +292,30 @@ body {
 
 /* Modal Content/Box */
 .modal-content {
+  display: list-item;
   background-color: #2a2b38;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 30%;
-    text-align: center;
+  margin: 15% auto;
+  padding: 20px;
+  width: 30%;
+  text-align: center;
+  border-radius: 7px;
   /* Could be more or less, depending on screen size */
+}
+
+.modal-content form {
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.modal-content #serverName {
+  border: none;
+  height: 100%;
+  width: 100%;
+  font-size: 16px;
+  border-radius: 5px;
+  padding: 5px;
 }
 
 /* The Close Button */
@@ -549,3 +585,4 @@ body {
   padding: 30px ;
   border-bottom: 1px solid white;
 }
+
